@@ -3,7 +3,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
 import Onboarding from "../screens/Onboarding";
-import Home from "../screens/Home";
+import Login from "../screens/Login";
 
 import { colors } from "../theme/colors";
 
@@ -22,7 +22,7 @@ const Routes = () => {
         }}
       >
         <Screen name="onboarding" component={Onboarding} />
-        <Screen name="home" component={Home} />
+        <Screen name="login" component={Login} />
       </Navigator>
     </NavigationContainer>
   );

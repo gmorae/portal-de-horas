@@ -18,7 +18,7 @@ export default function Onboarding() {
       <Image source={require('../../assets/onboarding.png')} />
       <Content>
         <Title>Escaneie o QrCode para conseguir computar o seu ponto de trabalho.</Title>
-        <Button onPress={() => navigate('home')}>
+        <Button onPress={() => navigate('login')}>
           <Icon name="arrow-right" color={colors.white} size={24} />
         </Button>
       </Content>
