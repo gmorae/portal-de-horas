@@ -4,6 +4,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 
 import Onboarding from "../screens/Onboarding";
 import Login from "../screens/Login";
+import Home from '../screens/Home';
 
 import { colors } from "../theme/colors";
 
@@ -23,6 +24,7 @@ const Routes = () => {
       >
         <Screen name="onboarding" component={Onboarding} />
         <Screen name="login" component={Login} />
+        <Screen name="home" component={Home} />
       </Navigator>
     </NavigationContainer>
   );

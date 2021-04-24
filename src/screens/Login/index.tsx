@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
+import { Alert } from 'react-native';
 
 import Input from '../../components/Input';
 import TextButton from '../../components/TextButton';
@@ -20,6 +21,14 @@ const Login = () => {
   const [password, setPassword] = useState<string>('');
 
   const { navigate } = useNavigation()
+
+  function handleLogin() {
+    if (!!email || !!password) {
+      navigate('home')
+    } else {
+      Alert.alert('Erro ao realizar login', 'Preencha o e-mail e a senha')
+    }
+  }
 
   return (
     <ContainerLogin
@@ -57,7 +66,7 @@ const Login = () => {
         right
       />
       <Button
-        onPress={() => { }}
+        onPress={handleLogin}
         variant={!!email && !!password ? 'success' : 'disabled'}
         text="Entrar"
         disabled={!!email && !!password ? false : true}
