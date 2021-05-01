@@ -5,13 +5,16 @@ import { createStackNavigator } from "@react-navigation/stack";
 import Onboarding from "../screens/Onboarding";
 import Login from "../screens/Login";
 import Home from '../screens/Home';
+import NewAppointment from "../screens/NewAppointment";
 
 import { colors } from "../theme/colors";
+import useAuth from "../hooks/useAuth";
 
 const Navigator = createStackNavigator().Navigator;
 const Screen = createStackNavigator().Screen;
 
 const Routes = () => {
+  const { signed } = useAuth()
   return (
     <NavigationContainer>
       <Navigator
@@ -22,9 +25,21 @@ const Routes = () => {
           },
         }}
       >
-        <Screen name="onboarding" component={Onboarding} />
-        <Screen name="login" component={Login} />
-        <Screen name="home" component={Home} />
+        {
+          !signed ? (
+            <>
+              <Screen name="onboarding" component={Onboarding} />
+              <Screen name="login" component={Login} />
+            </>
+          ) : (
+            <>
+              <Screen name="home" component={Home} />
+              <Screen name="newAppointment" component={NewAppointment} />
+            </>
+          )
+        }
+
+
       </Navigator>
     </NavigationContainer>
   );

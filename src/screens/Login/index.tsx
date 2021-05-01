@@ -14,6 +14,7 @@ import {
   Title,
   ViewInputs
 } from "./styled";
+import useAuth from '../../hooks/useAuth';
 
 const Login = () => {
 
@@ -22,13 +23,7 @@ const Login = () => {
 
   const { navigate } = useNavigation()
 
-  function handleLogin() {
-    if (!!email || !!password) {
-      navigate('home')
-    } else {
-      Alert.alert('Erro ao realizar login', 'Preencha o e-mail e a senha')
-    }
-  }
+  const { signIn } = useAuth()
 
   return (
     <ContainerLogin
@@ -66,7 +61,7 @@ const Login = () => {
         right
       />
       <Button
-        onPress={handleLogin}
+        onPress={() => signIn(email, password)}
         variant={!!email && !!password ? 'success' : 'disabled'}
         text="Entrar"
         disabled={!!email && !!password ? false : true}

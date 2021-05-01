@@ -1,13 +1,16 @@
 import React from 'react';
 import { Text, View, StyleSheet, Alert } from 'react-native';
+import { useNavigation } from '@react-navigation/core';
 
 import Button from '../../components/Button';
 import Timer from '../../components/Timer'
 
 const Home = () => {
 
+    const { navigate } = useNavigation()
+
     function handleNewAppointment() {
-        Alert.alert('Sucesso', `Seu horário foi computado... ${new Date().getHours()}:${new Date().getMinutes()} `)
+        navigate('newAppointment')
     }
 
     return (
