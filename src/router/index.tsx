@@ -6,6 +6,7 @@ import Onboarding from "../screens/Onboarding";
 import Login from "../screens/Login";
 import Home from '../screens/Home';
 import NewAppointment from "../screens/NewAppointment";
+import ListAppointment from '../screens/ListAppointment';
 
 import { colors } from "../theme/colors";
 import useAuth from "../hooks/useAuth";
@@ -35,10 +36,10 @@ const Routes = () => {
             <>
               <Screen name="home" component={Home} />
               <Screen name="newAppointment" component={NewAppointment} />
+              <Screen name="listAppointment" component={ListAppointment} />
             </>
           )
         }
-
 
       </Navigator>
     </NavigationContainer>

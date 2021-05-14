@@ -28,6 +28,12 @@ const Home = () => {
                 onPress={handleNewAppointment}
             />
 
+            <Button
+                text="Ver meus históricos"
+                variant="next"
+                onPress={() => navigate('listAppointment')}
+            />
+
         </View>
     )
 }
