@@ -1,103 +1,148 @@
-import React, { useEffect, useState } from 'react'
-import {
-    StyleSheet,
-    Text,
-    View,
-    ScrollView
-} from 'react-native'
+import React from 'react';
+import { Ionicons } from '@expo/vector-icons';
+import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { useNavigation } from '@react-navigation/core';
 
-import axios from 'axios'
+export default function History() {
 
-export default function ListAppointment() {
+    const points = [
+        {
+            date: '12/05/2021',
+            weekday: 'Segunda-Feira',
+            entryOne: '09:00',
+            exitOne: '12:00',
+            entryTwo: '13:00',
+            exitTwo: '17:00'
+        },
+        {
+            date: '13/05/2021',
+            weekday: 'Terça-Feira',
+            entryOne: '09:00',
+            exitOne: '12:00',
+            entryTwo: '13:00',
+            exitTwo: '17:00'
+        },
+        {
+            date: '14/05/2021',
+            weekday: 'Quarta-Feira',
+            entryOne: '09:00',
+            exitOne: '12:00',
+            entryTwo: '13:00',
+            exitTwo: '17:00'
+        },
+        {
+            date: '15/05/2021',
+            weekday: 'Quinta-Feira',
+            entryOne: '09:00',
+            exitOne: '12:00',
+            entryTwo: '13:00',
+            exitTwo: '17:00'
+        },
+        {
+            date: '16/05/2021',
+            weekday: 'Sexta-Feira',
+            entryOne: '09:00',
+            exitOne: '12:00',
+            entryTwo: '13:00',
+            exitTwo: '17:00'
+        },
+        {
+            date: '17/05/2021',
+            weekday: 'Segunda-Feira',
+            entryOne: '09:00',
+            exitOne: '12:00',
+            entryTwo: '13:00',
+            exitTwo: '17:00'
+        },
+        {
+            date: '18/05/2021',
+            weekday: 'Terça-Feira',
+            entryOne: '09:00',
+            exitOne: '12:00',
+            entryTwo: '13:00',
+            exitTwo: '17:00'
+        },
+        {
+            date: '19/05/2021',
+            weekday: 'Quarta-Feira',
+            entryOne: '09:00',
+            exitOne: '12:00',
+            entryTwo: '13:00',
+            exitTwo: '17:00'
+        },
+    ]
 
-    const [appointments, setAppointments] = useState<any>([])
-
-    useEffect(() => {
-        getAppointments()
-    }, [])
-
-    async function getAppointments() {
-        try {
-            setAppointments([
-                {
-                    id: 1,
-                    entrada1: "09:00",
-                    saida1: "12:00",
-                    entrada2: "13:00",
-                    saida2: "19:00",
-                },
-                {
-                    id: 2,
-                    entrada1: "09:00",
-                    saida1: "12:00",
-                    entrada2: "13:00",
-                    saida2: "19:00",
-                },
-                {
-                    id: 3,
-                    entrada1: "09:00",
-                    saida1: "12:00",
-                    entrada2: "13:00",
-                    saida2: "19:00",
-                },
-                {
-                    id: 4,
-                    entrada1: "09:00",
-                    saida1: "12:00",
-                    entrada2: "13:00",
-                    saida2: "19:00",
-                },
-            ])
-
-        } catch (error) {
-            console.error(error);
-        }
-    }
+    const { navigate } = useNavigation()
 
     return (
-        <View style={styles.container}>
-            <Text style={styles.title}>Lista de apontamento de horas</Text>
-
-            <ScrollView
-                style={styles.list}
-                contentContainerStyle={{
-                    paddingHorizontal: 16,
-                    paddingBottom: 16
-                }}
-            >
-                {appointments.map((appointment: any) => (
-                    <View key={appointment.id} style={styles.listItem}>
-                        <Text style={styles.item}>{appointment.entrada1}</Text>
-                        <Text style={styles.item}>{appointment.saida1}</Text>
-                        <Text style={styles.item}>{appointment.entrada2}</Text>
-                        <Text style={styles.item}>{appointment.saida2}</Text>
-                    </View>
-                ))}
+        <View style={styles.background}>
+            <View style={styles.header}>
+            <Ionicons onPress={() => navigate('home')} name="arrow-back-outline" size={24} color="#000" />
+            <Text style={styles.text}>Meus pontos computados</Text>
+            
+            </View>
+            <ScrollView style={styles.contentHistories}>
+                {
+                    points.map((point, index) => (
+                        <View style={styles.point} key={index}>
+                            <View style={styles.hours}>
+                                <Text style={styles.weekday}>
+                                    {point.date}
+                                    {'\n'}
+                                    {point.weekday}
+                                </Text>
+                                <Text style={styles.hoursText}>{point.entryOne}</Text>
+                                <Text style={styles.hoursText}>{point.exitOne}</Text>
+                                <Text style={styles.hoursText}>{point.entryTwo}</Text>
+                                <Text style={styles.hoursText}>{point.exitTwo}</Text>
+                            </View>
+                        </View>
+                    ))
+                }
             </ScrollView>
         </View>
-    )
+    );
 }
 
 const styles = StyleSheet.create({
-    container: {
+    background: {
         flex: 1,
-        paddingHorizontal: 24,
-        paddingVertical: 24,
+        backgroundColor: '#FFF',
+        padding: 16,
+    },
+    header: {
+        flexDirection: 'row',
+        justifyContent: 'flex-start',
         alignItems: 'center'
     },
-    title: {
+    text: {
+        color: '#000',
         fontSize: 24,
-        fontWeight: 'bold',
-        marginBottom: 24
+        marginLeft: 32
     },
-    list: {
-        flexDirection: 'column'
+    contentHistories: {
+        marginTop: 16,
+        flex: 1,
+        width: '100%',
     },
-    listItem: {
+    point: {
+        backgroundColor: '#f1f3f3',
+        marginBottom: 8,
+        borderRadius: 8,
+        padding: 16,
+
+    },
+    weekday: {
+        color: '#777',
+        fontSize: 14
+    },
+    hours: {
+        marginTop: 8,
         flexDirection: 'row',
-        paddingVertical: 4
+        justifyContent: 'space-between'
     },
-    item: {
-        paddingHorizontal: 4
-    }
+    hoursText: {
+        fontWeight: 'bold',
+        fontSize: 16
+    },
 });
